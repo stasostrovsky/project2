@@ -9,5 +9,3 @@ if (result === null || result === undefined) {
     result = num2;
   }
 }
-
-result = num1 ?? num2;
