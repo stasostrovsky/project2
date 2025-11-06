@@ -1,60 +1,39 @@
-/* Задание на урок:
+/* const array = [3, 5, 8, 16, 20, 23, 50];
+const result = [];
 
-1) Создать переменную numberOfFilms и в неё поместить ответ от пользователя на вопрос:
-'Сколько фильмов вы уже посмотрели?'
+for (let index = 0; index < array.length; index++) {
+  result[result.length] = array[index];
+}
+console.log(result); */
 
-2) Создать объект personalMovieDB и в него поместить такие свойства:
-    - count - сюда передается ответ на первый вопрос
-    - movies - в это свойство поместить пустой объект
-    - actors - тоже поместить пустой объект
-    - genres - сюда поместить пустой массив
-    - privat - в это свойство поместить boolean(логическое) значение false
+/* const array = [10, 20, "Shopping", 40, "Homework"];
 
-3) Задайте пользователю по два раза вопросы:
-    - 'Один из последних просмотренных фильмов?'
-    - 'На сколько оцените его?'
-Ответы стоит поместить в отдельные переменные
-Записать ответы в объект movies в формате: 
-    movies: {
-        'logan': '8.1'
-    }
-
-Проверить, чтобы все работало без ошибок в консоли */
-
-"use strict";
-
-const numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "2");
-
-const personalMovieDB = {
-  count: numberOfFilms,
-  movies: {},
-  actors: {},
-  genres: [],
-  privat: false,
-};
-
-let nameFilm = prompt("Один из последних просмотренных фильмов?", "");
-let raiting = prompt("На сколько оцените его?", "");
-personalMovieDB.movies[nameFilm] = raiting;
-
-nameFilm = prompt("Один из последних просмотренных фильмов?", "");
-raiting = prompt("На сколько оцените его?", "");
-personalMovieDB.movies[nameFilm] = raiting;
-
-console.log(personalMovieDB);
-
-let hamburger;
-const fries = NaN;
-const cola = 0;
-const nuggets = 2;
-
-if ((hamburger && cola) || (fries === 3 && nuggets)) {
-  console.log("Done!");
+for (let index = 0; index < array.length; index++) {
+  let element = array[index];
+  if (typeof element === "string") {
+    element += " - done";
+    array[index] = element;
+  } else {
+    array[index] *= 2;
+  }
 }
 
+console.log(array);
+
+let result = [];
+
+for (let index = array.length - 1; index >= 0; index--) {
+  result[result.length] = array[index];
+}
+console.log(result); */
+
+const lines = 5;
 let result = "";
-for (let i = 1; i < 7; i++) {
-  for (let j = 0; j < i; j++) {
+for (let i = 0; i < lines; i++) {
+  for (let j = 0; j < lines - i; j++) {
+    result += " ";
+  }
+  for (let j = 0; j < 2 * i + 1; j++) {
     result += "*";
   }
   result += "\n";
