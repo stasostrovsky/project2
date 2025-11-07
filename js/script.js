@@ -1,41 +1,65 @@
-/* const array = [3, 5, 8, 16, 20, 23, 50];
-const result = [];
+/* Задание на урок:
 
-for (let index = 0; index < array.length; index++) {
-  result[result.length] = array[index];
-}
-console.log(result); */
+1) Автоматизировать вопросы пользователю про фильмы при помощи цикла
 
-/* const array = [10, 20, "Shopping", 40, "Homework"];
+2) Сделать так, чтобы пользователь не мог оставить ответ в виде пустой строки,
+отменить ответ или ввести название фильма длинее, чем 50 символов. Если это происходит - 
+возвращаем пользователя к вопросам опять. (К любой строке можно обратиться как 
+str.length - и получить её длину)
 
-for (let index = 0; index < array.length; index++) {
-  let element = array[index];
-  if (typeof element === "string") {
-    element += " - done";
-    array[index] = element;
+3) При помощи условий проверить  personalMovieDB.count, и если он меньше 10 - вывести сообщение
+"Просмотрено довольно мало фильмов", если от 10 до 30 - "Вы классический зритель", а если больше - 
+"Вы киноман". А если не подошло ни к одному варианту - "Произошла ошибка"
+
+4) Потренироваться и переписать цикл еще двумя способами*/
+
+"use strict";
+
+const numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
+
+const personalMovieDB = {
+  count: numberOfFilms,
+  movies: {},
+  actors: {},
+  genres: [],
+  privat: false,
+};
+
+/* for (let i = 0; i < 2; i++) {
+  const a = prompt("Один из последних просмотренных фильмов?", ""),
+    b = prompt("На сколько оцените его?", "");
+
+  if (a != null && b != null && a != "" && b != "" && a.length < 50) {
+    personalMovieDB.movies[a] = b;
+    console.log("done");
   } else {
-    array[index] *= 2;
+    console.log("error");
+    i--;
   }
+} */
+
+/* if (personalMovieDB.count < 10) {
+  console.log("Просмотрено довольно мало фильмов");
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+  console.log("Вы классический зритель");
+} else if (personalMovieDB.count >= 30) {
+  console.log("Вы киноман");
+} else {
+  console.log("Произошла ошибка");
+} */
+
+switch (true) {
+  case personalMovieDB.count >= 10 && personalMovieDB.count < 30:
+    console.log("Вы классический зритель");
+    break;
+  case personalMovieDB.count < 10 && personalMovieDB.count > 0:
+    console.log("Просмотрено довольно мало фильмов");
+    break;
+  case personalMovieDB.count >= 30:
+    console.log("Вы киноман");
+    break;
+  default:
+    console.log("Произошла ошибка");
+    break;
 }
-
-console.log(array);
-
-let result = [];
-
-for (let index = array.length - 1; index >= 0; index--) {
-  result[result.length] = array[index];
-}
-console.log(result); */
-
-const lines = 5;
-let result = "";
-for (let i = 0; i < lines; i++) {
-  for (let j = 0; j < lines - i; j++) {
-    result += " ";
-  }
-  for (let j = 0; j < 2 * i + 1; j++) {
-    result += "*";
-  }
-  result += "\n";
-}
-console.log(result);
+console.log(personalMovieDB);
