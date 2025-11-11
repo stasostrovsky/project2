@@ -83,5 +83,53 @@ if (n <= 0) {
   alert(pow(x, n));
 }
 
-console.log((0.1 + 0.2).toFixed(2)==0.3);
+console.log((0.1 + 0.2).toFixed(2) == 0.3);
 
+let user = {
+  name: "John",
+  age: 30,
+  isAdmin: true,
+};
+
+for (let key in user) {
+  console.log(`${key}: `, user[key]);
+}
+
+let schedule = {};
+
+console.log(isEmpty(schedule)); // true
+
+schedule["8:30"] = "get up";
+
+console.log(isEmpty(schedule)); // false
+
+function isEmpty(schedule) {
+  /* let isEmp = true;
+  for (const key in schedule) {
+    isEmp = false;
+    break;
+  }
+  return isEmp; */
+
+  return Boolean(Object.keys(schedule).length);
+}
+
+let salaries = {
+  John: 'a100',
+  Ann: 160,
+  Pete: 130,
+};
+
+function sum(obj) {
+  let itog = 0;
+
+  for (const key in obj) {
+    if (Object.hasOwn(obj, key) && Number.isFinite(obj[key])) {
+      itog += obj[key];
+    }
+  }
+
+  return itog;
+}
+
+console.log(sum(salaries));
