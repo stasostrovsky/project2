@@ -1,19 +1,23 @@
-let salaries = {
-  John: 100,
-  Pete: 300,
-  Mary: 250,
-};
+let users = [
+  { id: "john", name: "John Smith", age: 20 },
+  { id: "ann", name: "Ann Smith", age: 24 },
+  { id: "pete", name: "Pete Peterson", age: 31 },
+];
 
-function topSalary(obj) {
-  max_zp = Number.NEGATIVE_INFINITY;
-  let name = null;
-  for (let [key, value] of Object.entries(obj)) {
-    if (value > max_zp) {
-      name = key;
-      max_zp = value;
-    }
-  }
-  return name;
+let usersById = groupById(users);
+console.log(usersById);
+
+/*
+после вызова у нас должно получиться:
+
+usersById = {
+  john: {id: 'john', name: "John Smith", age: 20},
+  ann: {id: 'ann', name: "Ann Smith", age: 24},
+  pete: {id: 'pete', name: "Pete Peterson", age: 31},
 }
-
-console.log(topSalary(salaries));
+*/
+function groupById(arr = []) {
+  let res = {};
+  arr.forEach((value) => (res[value.id] = value));
+  return res;
+}
