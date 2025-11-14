@@ -1,60 +1,83 @@
-const personalPlanPeter = {
-  name: "Peter",
-  age: "29",
-  skills: {
-    languages: ["ru", "eng"],
-    programmingLangs: {
-      js: "20%",
-      php: "10%",
-    },
-    exp: "1 month",
-  },
-  showAgeAndLangs: function (personalPlanPeter) {
-    let age = personalPlanPeter.age;
-    let languages = personalPlanPeter.skills.languages;
-    let languagesStr = languages.join(" ").toUpperCase();
-    return `Мне ${age} и я владею языками: ${languagesStr}`;
-  },
-};
+let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
-//'Мне 29 и я владею языками: RU ENG'
-personalPlanPeter["showAgeAndLangs"] = function (plan = personalPlanPeter) {
-  let msg = `Мне ${plan.age} и я владею языками: ${plan.skills.languages
-    .join(" ")
-    .toUpperCase()}`;
-
-  return msg;
-};
-
-function showExperience(plan) {
-  return plan.skills.exp;
-}
-
-//"Язык js изучен на 20% Язык php изучен на 10%";
-function showProgrammingLangs(plan = personalPlanPeter) {
-  let mes = "";
-  let programmingLangs = plan.skills.programmingLangs;
-
-  for (let [Lang, proc] of Object.entries(programmingLangs)) {
-    mes += `Язык ${Lang} изучен на ${proc}.\n`;
+function aclean11(arr) {
+  let myMap = new Map();
+  for (value of arr) {
+    let key = value.split("").sort().join("").toUpperCase();
+    myMap.set(key, value);
   }
 
-  return mes;
+  let newArr = [];
+  let mySet = new Set(myMap.keys());
+  for (const key of mySet.values()) {
+    let value = myMap.get(key);
+    newArr.push(value);
+  }
+  return newArr;
 }
 
-function showProgrammingLangs1(plan) {
-  let programmingLangs = plan.skills.programmingLangs;
-  let msg = ``;
-  for (let key in programmingLangs) {
-    msg = msg + `Язык ${key} изучен на ${programmingLangs[key]}\n`;
+console.log(aclean11(arr)); // "nap,teachers,ear" или "PAN,cheaters,era"
+
+function aclean(arr) {
+  let map = new Map();
+
+  for (let word of arr) {
+    // разбиваем слово на буквы, сортируем и объединяем снова в строку
+    let sorted = word.toLowerCase().split("").sort().join(""); // (*)
+    map.set(sorted, word);
   }
 
-  //msg = msg.slice(0, msg.length - 1);
-  return msg; //
+  return Array.from(map.values());
 }
 
-//console.log(showProgrammingLangs(personalPlanPeter));
+console.log(aclean(arr));
 
-//console.log(showExperience(personalPlanPeter));
+let map = new Map();
 
-console.log(personalPlanPeter.showAgeAndLangs(personalPlanPeter));
+map.set("name", "John");
+
+let keys = map.keys();
+
+keys = Array.from(keys);
+// Error: keys.push is not a function
+// Ошибка: keys.push -- это не функция
+keys.push("more");
+
+console.log(keys);
+
+let user = {
+  name: "John",
+  age: 30,
+};
+
+// перебор значений
+for (let [key, value] of Object.entries(user)) {
+  console.log(`${key} = ${value}`); // John, затем 30
+}
+
+function sumSalaries(salaries) {
+  let sum = 0;
+  for (let element of Object.values(salaries)) {
+    sum += element;
+  }
+  return sum;
+}
+
+let salaries = {
+  John: 100,
+  Pete: 300,
+  Mary: 250,
+};
+
+console.log(sumSalaries(salaries));
+
+let user11 = {
+  name: 'John',
+  age: 30
+};
+
+console.log( count(user11) ); // 2
+
+function count(user11 ={}) {
+  return Object.keys(user11).length;
+}
