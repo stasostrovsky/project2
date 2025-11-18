@@ -1,65 +1,53 @@
-const shoppingMallData = {
-  shops: [
-    {
-      width: 10,
-      length: 5,
-    },
-    {
-      width: 15,
-      length: 7,
-    },
-    {
-      width: 20,
-      length: 5,
-    },
-    {
-      width: 8,
-      length: 10,
-    },
-  ],
-  height: 5,
-  moneyPer1m3: 30,
-  budget: 50000,
-};
+const students = [
+  "Peter",
+  "Andrew",
+  "Ann",
+  "Mark",
+  "Josh",
+  "Sandra",
+  "Cris",
+  "Bernard",
+  "Takesi",
+  "Sam",
+];
 
-console.log(isBudgetEnough(shoppingMallData));
+console.log(sortStudentsByGroups(students));
 
-function isBudgetEnough(data) {
-  let AreaAllStores = CalcTotalAreaAllStores(data.shops);
-  let TotalVolumeShoppingCenter = CalcTotalVolumeShoppingCenter(
-    AreaAllStores,
-    data.height
-  );
-  let budget = СalcBudget(TotalVolumeShoppingCenter, data.moneyPer1m3);
+function sortStudentsByGroups(arr = []) {
+  arr.sort((a, b) => a.localeCompare(b));
 
-  let str = "";
-  if (budget <= data.budget) {
-    str = "Бюджета достаточно";
+  console.log(`До: $(arr)`);
+
+  let remainder = arr.length % 9;
+
+  let arrRemainingStudents = arr.splice(arr.length - remainder, remainder);
+
+  console.log(`После: $(arr)`);
+
+  let countRow = arr.length / 3;
+
+  let arrResult = [];
+  let start = 0;
+  let end = 3;
+  for (let i = 0; i < countRow; i++) {
+    let a1 = arr.slice(start, end);
+    console.log(a1);
+
+    arrResult[i] = a1;
+
+    start = end;
+    end = end + 3;
+  }
+
+  let msg = "";
+
+  if (remainder === 0) {
+    msg = "Оставшиеся студенты: -";
   } else {
-    str = "Бюджета недостаточно";
-  }
-  return str;
-}
-
-//вычисление общей площади всех магазинов,
-//которая вычисляется как длина магазина умноженная на его ширину
-function CalcTotalAreaAllStores(shops) {
-  let AreaAllStores = 0;
-
-  for (let i = 0; i < shops.length; i++) {
-    AreaAllStores += shops[i].width * shops[i].length;
+    msg = "Оставшиеся студенты: " + arrRemainingStudents.join(", ");
   }
 
-  return AreaAllStores;
-}
+  arrResult[arrResult.length] = msg;
 
-//Вычисление общего объема торгового центра,
-//так как цена отопления указана в кубических метрах;
-function CalcTotalVolumeShoppingCenter(AreaAllStores, height) {
-  return AreaAllStores * height;
-}
-
-//Рассчитать бюджет
-function СalcBudget(TotalVolumeShoppingCenter, moneyPer1m3) {
-  return TotalVolumeShoppingCenter * moneyPer1m3;
+  return arrResult;
 }
