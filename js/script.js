@@ -1,29 +1,25 @@
-function printNumbers1(from, to) {
-  let current = from;
-
-  let timerId = setInterval(function () {
-    console.log(current);
-    if (current == to) {
-      clearInterval(timerId);
-    }
-    current++;
-  }, 1000);
+function slow(x) {
+  // здесь могут быть ресурсоёмкие вычисления
+  console.log(`Called with ${x}`);
+  return Math.random();
 }
 
-// использование:
-printNumbers1(5, 10);
-
-function printNumbers(from, to) {
-  let current = from;
-
-  setTimeout(function go() {
-    console.log(current);
-    if (current < to) {
-      setTimeout(go, 1000);
+function cachingDecorator(func) {
+  let cache = new Map();
+  return function (x) {
+    if (cache.has(x)) {
+      // если кеш содержит такой x,
+      return cache.get(x); // читаем из него результат
     }
-    current++;
-  }, 1000);
+    let result = func(x); // иначе, вызываем функцию
+    cache.set(x, result); // и кешируем (запоминаем) результат
+    return result;
+  };
 }
 
-// использование:
-printNumbers(5, 10);
+slow = cachingDecorator(slow);
+
+console.log(slow(1)); // slow(1) кешируем
+console.log("Again: " + slow(1)); // возвращаем из кеша
+console.log(slow(2)); // slow(2) кешируем
+console.log("Again: " + slow(2)); // возвращаем из кеша
