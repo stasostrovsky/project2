@@ -1,23 +1,18 @@
-function decor(func) {
-  function wrapper(...args) {
-    wrapper.calls.push(args);
-    return func.apply(this, args);
+function work(a, b) {
+  console.log(a + b); // произвольная функция или метод
+}
+function spy(func) {
+  function wrapper() {
+    wrapper.calls.push(Array.from(arguments));
+    return func(...arguments);
   }
-
-  wrapper.calls = [];
-
+  wrapper["calls"] = [];
   return wrapper;
 }
 
-function work(a, b) {
-  console.log(a + b);
-}
-
-work = decor(work);
-
+work = spy(work);
 work(1, 2); // 3
 work(4, 5); // 9
-
 for (let args of work.calls) {
-  console.log("call:" + args.join());
+  console.log("call:" + args.join()); // "call:1,2", "call:4,5"
 }
