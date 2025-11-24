@@ -1,24 +1,10 @@
-function makeCounter() {
-  function counter() {
-    return counter.count++;
-  }
-  counter.count = 0;
-  counter.getCount = function () {
-    return counter.count;
-  };
+let obj = {
+  0: "Hello",
+  1: "world!",
+  length: 2,
+  join: Array.prototype.join,
+};
 
-  return counter;
-}
+//obj.join = Array.prototype.join;
 
-let counter = makeCounter();
-console.log(counter()); // 0
-console.log(counter()); // 1
-console.log(counter.getCount());
-
-let counter2 = makeCounter();
-console.log(counter2()); // 1
-console.log(counter2()); // 1
-console.log(counter2()); // 1
-console.log(counter2()); // 1
-console.log("counter2:", counter2.getCount());
-console.log("counter:", counter.getCount());
+console.log(obj.join(",")); // Hello,world!
