@@ -1,18 +1,24 @@
-function work(a, b) {
-  console.log(a + b); // произвольная функция или метод
-}
-function spy(func) {
-  function wrapper() {
-    wrapper.calls.push(Array.from(arguments));
-    return func(...arguments);
+function makeCounter() {
+  function counter() {
+    return counter.count++;
   }
-  wrapper["calls"] = [];
-  return wrapper;
+  counter.count = 0;
+  counter.getCount = function () {
+    return counter.count;
+  };
+
+  return counter;
 }
 
-work = spy(work);
-work(1, 2); // 3
-work(4, 5); // 9
-for (let args of work.calls) {
-  console.log("call:" + args.join()); // "call:1,2", "call:4,5"
-}
+let counter = makeCounter();
+console.log(counter()); // 0
+console.log(counter()); // 1
+console.log(counter.getCount());
+
+let counter2 = makeCounter();
+console.log(counter2()); // 1
+console.log(counter2()); // 1
+console.log(counter2()); // 1
+console.log(counter2()); // 1
+console.log("counter2:", counter2.getCount());
+console.log("counter:", counter.getCount());
