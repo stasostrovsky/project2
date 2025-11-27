@@ -1,10 +1,9 @@
-export function Counter() {
-  let count = 0;
+export { sayHi, sayBye };
 
-  this.up = function () {
-    return ++count;
-  };
-  this.down = function () {
-    return --count;
-  };
+function sayHi(user) {
+  console.log(`Hello, ${user}!`);
+}
+
+function sayBye(user) {
+  console.log(`Bye, ${user}!`);
 }
