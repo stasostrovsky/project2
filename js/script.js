@@ -1,3 +1,4 @@
+import { sayHi, sayBye } from "./a.js";
 import { ExtendedClock } from "./extended-clock.js";
 
 debugger;
@@ -10,3 +11,6 @@ let lowResolutionClock = new ExtendedClock({
 lowResolutionClock.start();
 
 setTimeout(() => lowResolutionClock.stop(), 5000);
+
+sayHi("John"); // Hello, John!
+sayBye("John");
