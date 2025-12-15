@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+
+  <div id="clock">
+    <span class="hour">hh</span>:
+    <span class="min">mm</span>:
+    <span class="sec">ss</span>
+  </div>
+
+  <input type="button" onclick="clockStart()" value="Старт">
+  <input type="button" onclick="clockStop()" value="Стоп">
+
+  <script>
+    let timerId;
+    let hourElem = document.querySelector('.hour');
+    let minElem = document.querySelector('.min');
+    let secElem = document.querySelector('.sec');
+
+    function clockStart() {
+      if (!timerId) {
+        timerId = setInterval(update, 1000);
+      }
+      update();
+    }
+
+    function clockStop() {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      }
+    }
+
+    function update() {
+      let d = new Date();
+      hourElem.innerHTML = d.getHours() < 10 ? '0' + d.getHours() : d.getHours();
+      minElem.innerHTML = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();
+      secElem.innerHTML = d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds();
+    }
+  </script>
+</body>
+
+</html>

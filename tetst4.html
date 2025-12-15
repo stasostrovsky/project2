@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <ul id="ul"></ul>
+
+  <script>
+    let div = document.createElement('div');
+    div.className = 'mes';
+    div.innerHTML = `<b>ui stas </b> <br>
+        <strong>Всем привет!</strong> Вы прочитали важное сообщение.`;
+    document.body.append(div);
+
+    ul.append(getListContent()); // (*)
+    
+    function getListContent() {
+      let fragment = new DocumentFragment();
+
+      for (let i = 1; i <= 3; i++) {
+        let li = document.createElement('li');
+        li.append(i);
+        fragment.append(li);
+      }
+
+      return fragment;
+    }
+  </script>
+</body>
+
+</html>
