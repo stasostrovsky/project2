@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Раскрывающееся дерево</title>
+  <style>
+    .tree span:hover {
+      font-weight: bold;
+    }
+
+    .tree span {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <ul class="tree" id="tree">
+    <li><span>Животные</span>
+      <ul>
+        <li><span>Млекопитающие</span>
+          <ul>
+            <li>Коровы</li>
+            <li>Ослы</li>
+            <li>Собаки</li>
+            <li>Тигры</li>
+          </ul>
+        </li>
+        <li><span>Другие</span>
+          <ul>
+            <li>Змеи</li>
+            <li>Птицы</li>
+            <li>Ящерицы</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><span>Рыбы</span>
+      <ul>
+        <li><span>Аквариумные</span>
+          <ul>
+            <li>Гуппи</li>
+            <li>Скалярии</li>
+          </ul>
+        </li>
+        <li><span>Морские</span>
+          <ul>
+            <li>Морская форель</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+</body>
+<script>
+  let tree = document.querySelector('.tree');
+  tree.addEventListener('click', hidesShowsDescendants);
+  function hidesShowsDescendants(event) {
+    if (event.target.parentElement.tagName == 'LI') {
+      for (const element of event.target.parentElement.children) {
+        if (element.tagName == "UL") {
+          element.hidden = !element.hidden;
+        }
+      }
+    }
+  }
+</script>
+
+</html>
