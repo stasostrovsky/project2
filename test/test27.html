@@ -1,0 +1,22 @@
+<!doctype html>
+
+<body>
+  <button id="menu">Меню (нажми меня)</button>
+
+  <script>
+    document.addEventListener('menu-open', () => alert('вложенное событие'))
+
+    menu.onclick = function () {
+      alert(1);
+
+      // alert("вложенное событие")
+      menu.dispatchEvent(new CustomEvent("menu-open", {
+        bubbles: true
+      }));
+
+      alert(2);
+    };
+
+
+  </script>
+</body>

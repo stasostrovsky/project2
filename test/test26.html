@@ -1,0 +1,35 @@
+<!doctype html>
+
+<body>
+  <pre id="rabbit">
+  |\   /|
+   \|_|/
+   /. .\
+  =\_Y_/=
+   {>o<}
+  </pre>
+
+  <button onclick="hide()">Hide()</button>
+
+  <script>
+
+    rabbit.addEventListener('hide', function (event) {
+      if (confirm("Вызвать preventDefault?")) {
+        event.preventDefault();
+      }
+    });
+
+    function hide() {
+      let event = new CustomEvent("hide", {
+        cancelable: true // без этого флага preventDefault не сработает
+      });
+      if (!rabbit.dispatchEvent(event)) {
+        alert('Действие отменено обработчиком');
+      } else {
+        rabbit.hidden = true;
+      }
+    }
+
+
+  </script>
+</body>
