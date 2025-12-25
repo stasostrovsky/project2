@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <select id="genres" onchange="preferedBrowser()">
+    <option value="rock">Рок</option>
+    <option value="blues" selected>Блюз</option>
+  </select>
+
+  <p id="demo"></p>
+
+  <script>
+    //<option value="classic">Классика</option>.
+    let genres = document.querySelector('#genres');
+    let option = new Option("Классика", "classic", true, true);
+    genres.options.add(option);
+    let demo = document.querySelector("#demo");
+    function preferedBrowser() {
+      let mes = `Значение: ${genres.value} 
+      и текст выбранного пункта ${genres.options[genres.selectedIndex].text}`;
+      console.log(mes);
+      demo.innerHTML = mes;
+    }
+  </script>
+</body>
+
+</html>
